@@ -4,6 +4,14 @@ A small multi-container app. A Flask web app counts page visits and stores the c
 
 Built as the capstone challenge for the Docker module of the CoderCo DevOps Academy.
 
+![The /count page](screenshots/count.png)
+
+![Docker Compose starting both services](screenshots/compose-up.png)
+
+![The Compose file with the volume](screenshots/compose-yml.png)
+
+
+
 ## What it does
 
 - `/` shows a welcome message.
