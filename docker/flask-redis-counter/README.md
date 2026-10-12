@@ -5,11 +5,10 @@ A small multi-container app. A Flask web app counts page visits and stores the c
 Built as the capstone challenge for the Docker module of the CoderCo DevOps Academy.
 
 <img src="screenshots/count.png" alt="The /count page" width="500">
+
 ![Docker Compose starting both services](screenshots/compose-up.png)
 
 ![The Compose file with the volume](screenshots/compose-yml.png)
-
-
 
 ## What it does
 
@@ -32,6 +31,7 @@ flask-redis-counter/
 ├── app.py
 ├── Dockerfile
 ├── docker-compose.yml
+├── screenshots/
 └── README.md
 ```
 
@@ -45,8 +45,8 @@ docker compose up --build
 
 Then open:
 
-- http://localhost:5003 for the welcome message
-- http://localhost:5003/count and refresh. The number goes up each time.
+- `http://localhost:5003` for the welcome message
+- `http://localhost:5003/count` and refresh. The number goes up each time.
 
 Stop it:
 
@@ -54,6 +54,10 @@ Stop it:
 docker compose down      # removes the containers, keeps the saved count
 docker compose down -v   # also deletes the volume, so the count resets
 ```
+
+## Configuration
+
+The Redis connection is not hard-coded. `app.py` reads `REDIS_HOST` and `REDIS_PORT` from environment variables, and `docker-compose.yml` supplies them. Changing the Redis address means editing the Compose file, not the code.
 
 ## Persistent storage
 
@@ -66,6 +70,7 @@ Before the volume, removing the containers reset the count to 1. With the volume
 - Inside a container, `localhost` is the container itself. Services find each other by their Compose service name.
 - A container's data disappears with the container unless it is stored in a volume.
 - The addresses a container prints (such as `127.0.0.1` or `172.x.x.x`) are internal. The port mapping in `docker-compose.yml` is what makes the app reachable from my browser at `localhost:5003`.
+- Settings such as the Redis host and port belong in environment variables, so the same image can run in different places without code changes.
 - `docker compose logs` is the first place to look when something doesn't work.
 
 ## Status
@@ -74,5 +79,5 @@ Before the volume, removing the containers reset the count to 1. With the volume
 - [x] Dockerfile for the Flask app
 - [x] Docker Compose with two services
 - [x] Bonus: persistent storage for Redis (volume)
-- [x]Bonus: environment variables for the Redis connection
+- [x] Bonus: environment variables for the Redis connection
 - [ ] Bonus: scaling the Flask service with load balancing
