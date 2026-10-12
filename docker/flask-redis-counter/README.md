@@ -4,8 +4,7 @@ A small multi-container app. A Flask web app counts page visits and stores the c
 
 Built as the capstone challenge for the Docker module of the CoderCo DevOps Academy.
 
-![The /count page](screenshots/count.png)
-
+<img src="screenshots/count.png" alt="The /count page" width="500">
 ![Docker Compose starting both services](screenshots/compose-up.png)
 
 ![The Compose file with the volume](screenshots/compose-yml.png)
@@ -75,5 +74,5 @@ Before the volume, removing the containers reset the count to 1. With the volume
 - [x] Dockerfile for the Flask app
 - [x] Docker Compose with two services
 - [x] Bonus: persistent storage for Redis (volume)
-- [ ] Bonus: environment variables for the Redis connection
+- [x]Bonus: environment variables for the Redis connection
 - [ ] Bonus: scaling the Flask service with load balancing
